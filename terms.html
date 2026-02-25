@@ -3,134 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service - MacroPath AI</title>
+  <title>Terms of Service – MacroPath AI</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #fff;
-      color: #222;
-      line-height: 1.7;
-      padding: 2rem 1rem;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #007AFF;
+      --dark: #1d1d1f;
+      --mid: #6e6e73;
+      --light: #f5f5f7;
+      --white: #fff;
     }
-    .container { max-width: 720px; margin: 0 auto; }
-    a { color: #0066cc; }
-    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
-    .updated { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
-    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; color: #111; }
-    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-    li { margin-bottom: 0.3rem; }
-    p { margin-bottom: 1rem; }
-    .important { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
-    .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; }
-    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #eee; color: #888; font-size: 0.85rem; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* NAV */
+    body > nav {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; color: var(--dark); text-decoration: none;
+    }
+    .nav-brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-brand .logo-fb {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: linear-gradient(135deg, #c7b8ea, #8b5cf6);
+      display: none; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-size: 0.875rem; color: var(--mid); font-weight: 500; }
+    .nav-links a:hover { color: var(--dark); text-decoration: none; }
+    .nav-cta {
+      background: var(--blue); color: #fff !important;
+      padding: .4rem 1rem; border-radius: 18px; font-weight: 600 !important;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d2d30 100%);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 0.3rem;
+    }
+    .page-hero .meta { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
+    /* CONTENT */
+    .content-wrap {
+      flex: 1; max-width: 760px; width: 100%;
+      margin: 0 auto; padding: 3rem 2rem;
+    }
+    .content-wrap h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--dark);
+      margin-top: 2.25rem; margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem; border-bottom: 2px solid #e5e7eb;
+    }
+    .content-wrap h2:first-child { margin-top: 0; }
+    .content-wrap p { margin-bottom: 1rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap ul, .content-wrap ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .content-wrap li { margin-bottom: 0.35rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap strong { color: var(--dark); font-weight: 600; }
+    .content-wrap a { color: var(--blue); }
+    .important {
+      background: #fff8eb; border-left: 4px solid #FF9500;
+      padding: 1rem 1.25rem; margin: 1rem 0; border-radius: 0 10px 10px 0;
+    }
+    .important p { margin: 0; color: #374151; }
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      padding: 2rem 2rem;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 1rem;
+    }
+    footer .brand { color: #fff; font-weight: 700; font-size: 0.95rem; }
+    footer nav {
+      background: none !important; border: none !important;
+      height: auto; padding: 0; display: flex; flex-wrap: wrap;
+      align-items: center; backdrop-filter: none;
+    }
+    footer nav a { color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-left: 1.25rem; }
+    footer nav a:hover { color: #fff; text-decoration: none; }
+    footer .copy { font-size: 0.78rem; width: 100%; text-align: center; margin-top: 0.5rem; }
+    @media (max-width: 640px) {
+      body > nav { padding: 0 1rem; }
+      .nav-links .hide-mobile { display: none; }
+      .content-wrap { padding: 2rem 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      footer nav a { margin-left: 0.9rem; }
+    }
+    @media (prefers-color-scheme: dark) {
+      body { background: #111; color: #f5f5f7; }
+      body > nav { background: rgba(0,0,0,0.88); border-color: rgba(255,255,255,0.1); }
+      .nav-brand { color: #f5f5f7; }
+      .nav-links a { color: rgba(255,255,255,0.6); }
+      .nav-links a:hover { color: #fff; }
+      .content-wrap h2 { color: #f5f5f7; border-color: #333; }
+      .content-wrap p, .content-wrap li { color: #d1d5db; }
+      .content-wrap strong { color: #f5f5f7; }
+      .important { background: #2a1f00; border-left-color: #FF9500; }
+      .important p { color: #d1d5db; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a class="back" href="/">&larr; Back to MacroPath AI</a>
-    <h1>Terms of Service</h1>
-    <p class="updated">Last Updated: February 18, 2026</p>
 
-    <h2>Agreement to Terms</h2>
-    <p>By downloading, installing, or using MacroPath AI ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use MacroPath AI.</p>
-
-    <h2>Service Description</h2>
-    <p>MacroPath AI is an AI-powered nutrition tracking application that provides:</p>
-    <ul>
-      <li>Meal logging via voice commands, text input, and photo analysis</li>
-      <li>Automatic macro and calorie calculation using AI</li>
-      <li>Nutrition goal setting and daily progress tracking</li>
-      <li>Meal history, favorites, and data export</li>
-      <li>Subscription-based reward system with tier-based discounts</li>
-    </ul>
-
-    <h2>Account Eligibility</h2>
-    <ul>
-      <li>You must be at least 13 years old to use MacroPath AI</li>
-      <li>You must have a valid Apple ID (Sign in with Apple is required)</li>
-      <li>One user per account &mdash; account sharing is prohibited</li>
-      <li>You are responsible for maintaining the security of your account</li>
-    </ul>
-
-    <h2>Subscription &amp; Payment</h2>
-    <ul>
-      <li>New users receive a 7-day free trial with full access (including 20 photo analyses)</li>
-      <li>After the trial, a paid subscription is required to log meals</li>
-      <li>Monthly subscription: auto-renews each month</li>
-      <li>Annual subscription: auto-renews each year</li>
-      <li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period</li>
-      <li>Payment is charged to your Apple ID account at confirmation of purchase</li>
-      <li>All subscriptions are managed through Apple In-App Purchase</li>
-      <li>Refunds are handled by Apple per their refund policy &mdash; MacroPath AI cannot process refunds directly</li>
-      <li>Active subscribers can earn tier-based discounts (Gold, Silver, Bronze) through consistent meal tracking</li>
-    </ul>
-
-    <h2>Free Trial</h2>
-    <ul>
-      <li>The 7-day free trial provides full access to all features</li>
-      <li>20 photo analyses are included during the trial period</li>
-      <li>If you do not subscribe before the trial ends, meal creation features will be locked</li>
-      <li>You can still view your dashboard and historical data after the trial expires</li>
-      <li>The trial is available once per Apple ID</li>
-    </ul>
-
-    <h2>Acceptable Use</h2>
-    <p>You agree to use MacroPath AI only for personal nutrition tracking. The following activities are prohibited:</p>
-    <ul>
-      <li>Account sharing or using the App for commercial purposes</li>
-      <li>Reverse engineering, decompiling, or attempting to extract source code</li>
-      <li>Bypassing security measures, rate limits, or access controls</li>
-      <li>Submitting false, malicious, or harmful data</li>
-      <li>Using the App to harass, abuse, or harm others</li>
-      <li>Attempting to access other users' data</li>
-    </ul>
-
-    <h2>Medical Disclaimer</h2>
-    <div class="important">
-      <p><strong>IMPORTANT:</strong> MacroPath AI is NOT medical advice. The App provides nutrition tracking tools and AI-generated estimates only. MacroPath AI is not a substitute for professional medical, nutritional, or dietary advice. Always consult a qualified healthcare professional before making significant dietary changes. Nutrition data provided by the App (including AI-calculated macros) are estimates and may not be perfectly accurate. Use the App at your own risk. We are not responsible for health outcomes resulting from use of the App.</p>
-    </div>
-
-    <h2>Intellectual Property</h2>
-    <ul>
-      <li>The MacroPath AI app, source code, design, and branding are owned by MacroPath AI</li>
-      <li>You retain full ownership of your personal nutrition data</li>
-      <li>Nutrition database sourced from USDA FoodData Central (public domain)</li>
-      <li>You grant us a limited license to process your data solely to provide the App's services</li>
-    </ul>
-
-    <h2>Limitation of Liability</h2>
-    <p>MacroPath AI is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. To the maximum extent permitted by law:</p>
-    <ul>
-      <li>We are not liable for any health outcomes, dietary decisions, or nutrition data inaccuracies</li>
-      <li>We are not liable for service interruptions, data loss, or technical errors</li>
-      <li>Our total liability is limited to the greater of $100 USD or the total amount you paid to MacroPath AI in the 12 months preceding the claim</li>
-    </ul>
-
-    <h2>Termination</h2>
-    <ul>
-      <li>You may delete your account at any time through the App's settings (deletion is permanent and irreversible)</li>
-      <li>No refunds are provided for unused subscription time upon account deletion</li>
-      <li>We may suspend or terminate accounts that violate these Terms</li>
-      <li>Upon termination, your data will be deleted per our data retention policy</li>
-    </ul>
-
-    <h2>Dispute Resolution</h2>
-    <p>Any disputes arising from these Terms or use of MacroPath AI shall be resolved through binding arbitration administered by the American Arbitration Association, rather than in court. You agree to waive your right to participate in class action lawsuits. Before initiating arbitration, you agree to attempt informal resolution by contacting <a href="mailto:support@macropathai.com">support@macropathai.com</a>.</p>
-
-    <h2>Governing Law</h2>
-    <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to conflict of law principles.</p>
-
-    <h2>Changes to Terms</h2>
-    <p>We reserve the right to modify these Terms at any time. Material changes will be communicated through an in-app notification. Your continued use of MacroPath AI after changes are posted constitutes acceptance of the revised Terms.</p>
-
-    <h2>Contact Information</h2>
-    <p>Email: <a href="mailto:support@macropathai.com">support@macropathai.com</a><br />
-    Website: <a href="https://www.macropathai.com">www.macropathai.com</a></p>
-
-    <footer>
-      <p>&copy; 2026 MacroPath AI. All rights reserved. | <a href="/">Home</a> | <a href="/privacy.html">Privacy Policy</a></p>
-    </footer>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/assets/app-logo.png" alt="MacroPath AI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-fb">🎙</div>
+    MacroPath AI
+  </a>
+  <div class="nav-links">
+    <a href="/#three-ways" class="hide-mobile">Features</a>
+    <a href="/#gallery" class="hide-mobile">Screenshots</a>
+    <a href="/support.html">Support</a>
+    <a href="https://apps.apple.com/app/idPLACEHOLDER" class="nav-cta" target="_blank" rel="noopener">Download</a>
   </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Terms of Service</h1>
+  <p class="meta">Last Updated: February 18, 2026</p>
+</div>
+
+<div class="content-wrap">
+
+  <h2>Agreement to Terms</h2>
+  <p>By downloading, installing, or using MacroPath AI ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use MacroPath AI.</p>
+
+  <h2>Service Description</h2>
+  <p>MacroPath AI is an AI-powered nutrition tracking application that provides:</p>
+  <ul>
+    <li>Meal logging via voice commands, text input, and photo analysis</li>
+    <li>Automatic macro and calorie calculation using AI</li>
+    <li>Nutrition goal setting and daily progress tracking</li>
+    <li>Meal history, favorites, and data export</li>
+    <li>Subscription-based reward system with tier-based discounts</li>
+  </ul>
+
+  <h2>Account Eligibility</h2>
+  <ul>
+    <li>You must be at least 13 years old to use MacroPath AI</li>
+    <li>You must have a valid Apple ID (Sign in with Apple is required)</li>
+    <li>One user per account &mdash; account sharing is prohibited</li>
+    <li>You are responsible for maintaining the security of your account</li>
+  </ul>
+
+  <h2>Subscription &amp; Payment</h2>
+  <ul>
+    <li>New users receive a 7-day free trial with full access (including 20 photo analyses)</li>
+    <li>After the trial, a paid subscription is required to log meals</li>
+    <li>Monthly subscription: auto-renews each month</li>
+    <li>Annual subscription: auto-renews each year</li>
+    <li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period</li>
+    <li>Payment is charged to your Apple ID account at confirmation of purchase</li>
+    <li>All subscriptions are managed through Apple In-App Purchase</li>
+    <li>Refunds are handled by Apple per their refund policy &mdash; MacroPath AI cannot process refunds directly</li>
+    <li>Active subscribers can earn tier-based discounts (Gold, Silver, Bronze) through consistent meal tracking</li>
+  </ul>
+
+  <h2>Free Trial</h2>
+  <ul>
+    <li>The 7-day free trial provides full access to all features</li>
+    <li>20 photo analyses are included during the trial period</li>
+    <li>If you do not subscribe before the trial ends, meal creation features will be locked</li>
+    <li>You can still view your dashboard and historical data after the trial expires</li>
+    <li>The trial is available once per Apple ID</li>
+  </ul>
+
+  <h2>Acceptable Use</h2>
+  <p>You agree to use MacroPath AI only for personal nutrition tracking. The following activities are prohibited:</p>
+  <ul>
+    <li>Account sharing or using the App for commercial purposes</li>
+    <li>Reverse engineering, decompiling, or attempting to extract source code</li>
+    <li>Bypassing security measures, rate limits, or access controls</li>
+    <li>Submitting false, malicious, or harmful data</li>
+    <li>Using the App to harass, abuse, or harm others</li>
+    <li>Attempting to access other users' data</li>
+  </ul>
+
+  <h2>Medical Disclaimer</h2>
+  <div class="important">
+    <p><strong>IMPORTANT:</strong> MacroPath AI is NOT medical advice. The App provides nutrition tracking tools and AI-generated estimates only. MacroPath AI is not a substitute for professional medical, nutritional, or dietary advice. Always consult a qualified healthcare professional before making significant dietary changes. Nutrition data provided by the App (including AI-calculated macros) are estimates and may not be perfectly accurate. Use the App at your own risk. We are not responsible for health outcomes resulting from use of the App.</p>
+  </div>
+
+  <h2>Intellectual Property</h2>
+  <ul>
+    <li>The MacroPath AI app, source code, design, and branding are owned by MacroPath AI</li>
+    <li>You retain full ownership of your personal nutrition data</li>
+    <li>Nutrition database sourced from USDA FoodData Central (public domain)</li>
+    <li>You grant us a limited license to process your data solely to provide the App's services</li>
+  </ul>
+
+  <h2>Limitation of Liability</h2>
+  <p>MacroPath AI is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. To the maximum extent permitted by law:</p>
+  <ul>
+    <li>We are not liable for any health outcomes, dietary decisions, or nutrition data inaccuracies</li>
+    <li>We are not liable for service interruptions, data loss, or technical errors</li>
+    <li>Our total liability is limited to the greater of $100 USD or the total amount you paid to MacroPath AI in the 12 months preceding the claim</li>
+  </ul>
+
+  <h2>Termination</h2>
+  <ul>
+    <li>You may delete your account at any time through the App's settings (deletion is permanent and irreversible)</li>
+    <li>No refunds are provided for unused subscription time upon account deletion</li>
+    <li>We may suspend or terminate accounts that violate these Terms</li>
+    <li>Upon termination, your data will be deleted per our data retention policy</li>
+  </ul>
+
+  <h2>Dispute Resolution</h2>
+  <p>Any disputes arising from these Terms or use of MacroPath AI shall be resolved through binding arbitration administered by the American Arbitration Association, rather than in court. You agree to waive your right to participate in class action lawsuits. Before initiating arbitration, you agree to attempt informal resolution by contacting <a href="mailto:support@macropathai.com">support@macropathai.com</a>.</p>
+
+  <h2>Governing Law</h2>
+  <p>These Terms shall be governed by and construed in accordance with the laws of the United States, without regard to conflict of law principles.</p>
+
+  <h2>Changes to Terms</h2>
+  <p>We reserve the right to modify these Terms at any time. Material changes will be communicated through an in-app notification. Your continued use of MacroPath AI after changes are posted constitutes acceptance of the revised Terms.</p>
+
+  <h2>Contact Information</h2>
+  <p>Email: <a href="mailto:support@macropathai.com">support@macropathai.com</a><br />
+  Website: <a href="https://www.macropathai.com">www.macropathai.com</a></p>
+
+</div>
+
+<footer>
+  <div class="brand">MacroPath AI</div>
+  <nav>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/support.html">Support</a>
+    <a href="https://apps.apple.com/app/idPLACEHOLDER" target="_blank" rel="noopener">App Store</a>
+  </nav>
+  <div class="copy">&copy; 2026 MacroPath AI. All rights reserved.</div>
+</footer>
+
 </body>
 </html>
