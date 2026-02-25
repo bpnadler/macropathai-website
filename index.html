@@ -71,6 +71,12 @@
           .way-card p { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.6; margin-bottom: 1.25rem; }
           .way-phone { width: 100%; max-width: 180px; background: #111; border-radius: 28px; padding: 7px; box-shadow: 0 16px 40px rgba(0,0,0,.5); margin: 0 auto; display: block; }
           .way-phone img { width: 100%; border-radius: 22px; display: block; }
+    /* SCREENSHOT STRIPS inside way cards */
+    .way-strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+    .way-strip::-webkit-scrollbar { display: none; }
+    .way-strip-item { flex-shrink: 0; scroll-snap-align: start; width: 130px; }
+    .way-strip-item .strip-frame { background: #111; border-radius: 22px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+    .way-strip-item .strip-frame img { width: 100%; border-radius: 18px; display: block; }
           /* REWARDS */
           #rewards { background: linear-gradient(135deg,#78350f 0%,#92400e 50%,#78350f 100%); color: #fff; }
           #rewards .section-label { color: #fbbf24; }
@@ -185,21 +191,29 @@
                                 <div class="way-badge">Shoot It</div>
                                 <h3>Snap a photo</h3>
                                 <p>Point your camera at any meal. AI vision identifies every food item, estimates portions, and calculates macros — all before you take another bite.</p>
-                                <div class="way-phone"><img src="/assets/shoot-it-confirm-foods.png" alt="AI food ID" loading="lazy"></div>
-                      </div>
+                                <div class="way-strip">
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/shoot-1.png" alt="Shoot step 1" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/shoot-2.jpeg" alt="Shoot step 2" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/shoot-3.png" alt="Shoot step 3" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/shoot-4.png" alt="Shoot step 4" loading="lazy"></div></div>
+        </div></div>
                       <div class="way-card say">
                                 <div class="way-icon">&#127897;&#65039;</div>
                                 <div class="way-badge">Say It</div>
                                 <h3>Just speak naturally</h3>
                                 <p>"I had 2 scrambled eggs, sourdough toast, and coffee with almond milk." The AI transcribes, identifies, calculates, and logs — then speaks a confirmation back.</p>
-                                <div class="way-phone"><img src="/assets/food agent.png" alt="Voice logging" loading="lazy"></div>
-                      </div>
+                                <div class="way-strip">
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/say-it-1.png" alt="Say step 1" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/say-it-2.png" alt="Say step 2" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/say-it-3.png" alt="Say step 3" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img src="/assets/say-it-4.png" alt="Say step 4" loading="lazy"></div></div>
+        </div></div>
                       <div class="way-card type">
                                 <div class="way-icon">&#128172;</div>
                                 <div class="way-badge">Type It</div>
                                 <h3>Chat when voice isn't ideal</h3>
                                 <p>Crowded restaurant? Tricky food name like aca&#237; or pho? Just type it. Same AI accuracy, great for pasting ingredient lists from recipes.</p>
-                                <div class="way-phone"><img src="/assets/meals-breakfast-lunch.png" alt="Type to log" loading="lazy"></div>
+                                <div class="way-phone"><img src="/assets/type it.png" alt="Type to log" loading="lazy"></div>
                       </div>
               </div>
         </div>
@@ -209,7 +223,7 @@
         <div class="container">
               <div class="section-label">Everything You Need</div>
               <h2 class="section-title">Just meals and macros. No clutter, no upsells.</h2>
-              <p class="section-sub">Other apps pile on step counters, water logs, habit trackers, and exercise diaries — then charge you for all of it. We do one thing: track your food and calculate your macros. That's it. Fast, focused, and actually worth using every day.</p>
+              <p class="section-sub"><p class="section-sub">Other apps charge you for step counters, water logs, habit trackers, and exercise diaries you didn't ask for. We do one thing: track your meals and calculate your macros. Simple. Focused. Actually worth opening every day.</p>
               <div class="features-grid">
                       <div class="feat-card">
                                 <div class="feat-icon" style="background:#e8f4ff">&#129302;</div>
@@ -242,6 +256,42 @@
                                 <p>Tap any item to edit macros or quantity. Swipe to delete. Edit meals up to 3 days back. Navigate dates with a swipe.</p>
                       </div>
               </div>
+        </div>
+    </section>
+  
+    <section id="rewards">
+        <div class="container">
+              <div class="section-label">Rewards Program</div>
+              <div class="rewards-headline">Track more. Pay less.</div>
+              <p class="section-title" style="color:#fff; font-size:clamp(1.75rem,3.5vw,2.4rem); margin-bottom:.75rem;">The more you log, the less you pay.</p>
+              <p class="rewards-sub">We reward consistency with real money off your subscription. Log meals regularly and MacroPath pays you back — Gold trackers pay half price. Excess meals roll into your bank so good months cover slow ones.</p>
+              <div class="rewards-grid">
+                      <div class="reward-tier">
+                                <div class="medal">&#129351;</div>
+                                <h3>Gold</h3>
+                                <div class="meals">75 meals / month</div>
+                                <div class="discount">50% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#129352;</div>
+                                <h3>Silver</h3>
+                                <div class="meals">50 meals / month</div>
+                                <div class="discount">30% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#129353;</div>
+                                <h3>Bronze</h3>
+                                <div class="meals">25 meals / month</div>
+                                <div class="discount">15% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#127974;</div>
+                                <h3>Meal Bank</h3>
+                                <div class="meals">Up to 200 banked</div>
+                                <div class="discount">Carries over</div>
+                      </div>
+              </div>
+              <p class="reward-note">Only 3 meals per day count toward your total — encouraging consistent daily habits over binge logging.</p>
         </div>
     </section>
   
@@ -288,42 +338,6 @@
                       <div class="gallery-phone"><img src="/assets/rewards.png" alt="Rewards" loading="lazy"></div>
                       <div class="gallery-label">Rewards</div>
               </div>
-        </div>
-    </section>
-  
-    <section id="rewards">
-        <div class="container">
-              <div class="section-label">Rewards Program</div>
-              <div class="rewards-headline">Track more. Pay less.</div>
-              <p class="section-title" style="color:#fff; font-size:clamp(1.75rem,3.5vw,2.4rem); margin-bottom:.75rem;">The more you log, the less you pay.</p>
-              <p class="rewards-sub">We reward consistency with real money off your subscription. Log meals regularly and MacroPath pays you back — Gold trackers pay half price. Excess meals roll into your bank so good months cover slow ones.</p>
-              <div class="rewards-grid">
-                      <div class="reward-tier">
-                                <div class="medal">&#129351;</div>
-                                <h3>Gold</h3>
-                                <div class="meals">75 meals / month</div>
-                                <div class="discount">50% off</div>
-                      </div>
-                      <div class="reward-tier">
-                                <div class="medal">&#129352;</div>
-                                <h3>Silver</h3>
-                                <div class="meals">50 meals / month</div>
-                                <div class="discount">30% off</div>
-                      </div>
-                      <div class="reward-tier">
-                                <div class="medal">&#129353;</div>
-                                <h3>Bronze</h3>
-                                <div class="meals">25 meals / month</div>
-                                <div class="discount">15% off</div>
-                      </div>
-                      <div class="reward-tier">
-                                <div class="medal">&#127974;</div>
-                                <h3>Meal Bank</h3>
-                                <div class="meals">Up to 200 banked</div>
-                                <div class="discount">Carries over</div>
-                      </div>
-              </div>
-              <p class="reward-note">Only 3 meals per day count toward your total — encouraging consistent daily habits over binge logging.</p>
         </div>
     </section>
   
