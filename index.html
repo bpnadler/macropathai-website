@@ -20,7 +20,7 @@
     }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.88);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -28,22 +28,22 @@
       padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between; height: 60px;
     }
-    .nav-brand {
+    body > nav .nav-brand {
       display: flex; align-items: center; gap: 10px;
       font-size: 1.1rem; font-weight: 700; color: var(--dark); text-decoration: none;
     }
-    .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
-    .nav-brand .logo-fb {
+    body > nav .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+    body > nav .nav-brand .logo-fb {
       width: 32px; height: 32px; border-radius: 8px;
       background: linear-gradient(135deg,#c7b8ea,#8b5cf6);
       display: none; align-items: center; justify-content: center; font-size: 16px;
     }
-    .nav-cta {
+    body > nav .nav-cta {
       background: var(--blue); color: #fff;
       padding: .45rem 1.1rem; border-radius: 20px;
       font-size: .875rem; font-weight: 600; transition: opacity .2s;
     }
-    .nav-cta:hover { opacity: .85; text-decoration: none; }
+    body > nav .nav-cta:hover { opacity: .85; text-decoration: none; }
     section { padding: 80px 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label {
@@ -175,8 +175,9 @@
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
     }
     footer .brand { color: #fff; font-weight: 700; font-size: 1rem; }
-    footer nav a { color: rgba(255,255,255,.5); font-size: .9rem; margin-left: 1.5rem; }
-    footer nav a:hover { color: #fff; }
+    footer nav a { color: rgba(255,255,255,0.75); font-size: .9rem; margin-left: 1.5rem; background: none; border: none; padding: 0; }
+    footer nav { background: none !important; border: none !important; height: auto; padding: 0; display: flex; flex-wrap: wrap; align-items: center; backdrop-filter: none; }
+    footer nav a:hover { color: #fff; text-decoration: none; }
     footer .copy { font-size: .8rem; width: 100%; text-align: center; margin-top: 1rem; }
     @media (max-width:700px) {
       section { padding: 60px 1.25rem; }
@@ -195,8 +196,8 @@
       #rewards { background: linear-gradient(135deg,#1a1500,#2a2000); }
       .reward-tier { background: #1c1c1e; }
       .reward-tier h3 { color: #f5f5f7; }
-      nav { background: rgba(0,0,0,.88); border-color: rgba(255,255,255,.1); }
-      .nav-brand { color: #f5f5f7; }
+      body > nav { background: rgba(0,0,0,.88); border-color: rgba(255,255,255,.1); }
+      body > nav .nav-brand { color: #f5f5f7; }
       #gallery { background: #080808; }
     }
   </style>
