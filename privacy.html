@@ -3,38 +3,320 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy - MacroPath AI</title>
+  <title>Privacy Policy – MacroPath AI</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #fff;
-      color: #222;
-      line-height: 1.7;
-      padding: 2rem 1rem;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --blue: #007AFF; --dark: #1d1d1f; --mid: #6e6e73; --light: #f5f5f7; --white: #fff;
     }
-    .container { max-width: 720px; margin: 0 auto; }
-    a { color: #0066cc; }
-    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
-    .updated { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
-    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; color: #111; }
-    ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-    li { margin-bottom: 0.3rem; }
-    p { margin-bottom: 1rem; }
-    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-    th, td { border: 1px solid #ddd; padding: 0.6rem; text-align: left; }
-    th { background: #f5f5f5; font-weight: 600; }
-    .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; }
-    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #eee; color: #888; font-size: 0.85rem; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--light); color: var(--dark); line-height: 1.7; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    body > nav {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; color: var(--dark); text-decoration: none;
+    }
+    .nav-brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-brand .logo-fb {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: linear-gradient(135deg, #c7b8ea, #8b5cf6);
+      display: none; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-size: 0.875rem; color: var(--mid); font-weight: 500; }
+    .nav-links a:hover { color: var(--dark); text-decoration: none; }
+    .nav-cta {
+      background: var(--blue); color: #fff !important;
+      padding: .4rem 1rem; border-radius: 18px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ── HERO BAND ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d2d30 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.4rem;
+    }
+    .page-hero .updated {
+      font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-top: 0.4rem;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      flex: 1;
+      max-width: 760px; width: 100%;
+      margin: 0 auto; padding: 3rem 2rem;
+    }
+    .content-wrap h2 {
+      font-size: 1.15rem; font-weight: 700; color: var(--dark);
+      margin-top: 2.25rem; margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .content-wrap h2:first-child { margin-top: 0; }
+    .content-wrap p { margin-bottom: 1rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap ul, .content-wrap ol {
+      margin-left: 1.5rem; margin-bottom: 1rem;
+    }
+    .content-wrap li { margin-bottom: 0.4rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap strong { color: var(--dark); font-weight: 600; }
+    .content-wrap a { color: var(--blue); }
+    .content-wrap table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .content-wrap th, .content-wrap td {
+      border: 1px solid #e5e7eb; padding: 0.65rem 0.9rem; text-align: left;
+    }
+    .content-wrap th { background: #f9fafb; font-weight: 600; color: var(--dark); }
+    .content-wrap td { background: #fff; color: #374151; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      padding: 2rem 2rem;
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    footer .brand { color: #fff; font-weight: 700; font-size: 0.95rem; }
+    footer nav { background: none !important; border: none !important; height: auto; padding: 0; display: flex; flex-wrap: wrap; align-items: center; backdrop-filter: none; }
+    footer nav a { color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-left: 1.25rem; }
+    footer nav a:hover { color: #fff; text-decoration: none; }
+    footer .copy { font-size: 0.78rem; width: 100%; text-align: center; margin-top: 0.5rem; }
+
+    @media (max-width: 640px) {
+      body > nav { padding: 0 1rem; }
+      .nav-links .hide-mobile { display: none; }
+      .content-wrap { padding: 2rem 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      footer nav a { margin-left: 0.9rem; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #111; color: #f5f5f7; }
+      body > nav { background: rgba(0,0,0,0.88); border-color: rgba(255,255,255,0.1); }
+      .nav-brand { color: #f5f5f7; }
+      .nav-links a { color: rgba(255,255,255,0.6); }
+      .nav-links a:hover { color: #fff; }
+      .content-wrap h2 { color: #f5f5f7; border-color: #333; }
+      .content-wrap p, .content-wrap li { color: #d1d5db; }
+      .content-wrap strong { color: #f5f5f7; }
+      .content-wrap th { background: #1c1c1e; color: #f5f5f7; border-color: #333; }
+      .content-wrap td { background: #141414; color: #d1d5db; border-color: #333; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a class="back" href="/">&larr; Back to MacroPath AI</a>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last Updated: February 18, 2026</p>
 
-    <h2>Introduction</h2>
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/assets/app-logo.png" alt="MacroPath AI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-fb">🎙</div>
+    MacroPath AI
+  </a>
+  <div class="nav-links">
+    <a href="/#three-ways" class="hide-mobile">Features</a>
+    <a href="/#gallery" class="hide-mobile">Screenshots</a>
+    <a href="/support.html">Support</a>
+    <a href="https://apps.apple.com/app/idPLACEHOLDER" class="nav-cta" target="_blank" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<div class="page-hero"><h1>Privacy Policy</h1><p class="updated">Last Updated: February 18, 2026</p></div>
+
+<div class="content-wrap">
+<h2>Introduction</h2>
+    <p>MacroPath AI ("we", "our", "us") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and protect your information when you use the MacroPath AI mobile application ("the App").</p>
+
+    <h2>Information We Collect</h2>
+    <ul>
+      <li><strong>Account Information:</strong> Apple ID email address, display name, and Apple-provided user identifier (via Sign in with Apple)</li>
+      <li><strong>Nutrition Data:</strong> Meals logged, food items, macro/calorie data, nutrition goals, and saved favorites</li>
+      <li><strong>Photo Data:</strong> Food photos submitted for AI analysis (processed in real-time, stored only if you save the meal)</li>
+      <li><strong>Voice Data:</strong> Voice recordings are temporarily processed for meal logging and are NOT stored permanently</li>
+      <li><strong>Usage Data:</strong> API usage statistics, error logs, and feature usage analytics</li>
+      <li><strong>Device Information:</strong> iPhone model, iOS version, and app version</li>
+      <li><strong>Subscription Data:</strong> Subscription status, purchase history, and reward tier progress (managed via RevenueCat)</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>Provide AI-powered nutrition tracking and food logging services</li>
+      <li>Process voice commands, text input, and food photos to identify meals and calculate nutrition data</li>
+      <li>Help you set, track, and achieve nutrition goals</li>
+      <li>Manage your account, subscription, and reward tier status</li>
+      <li>Improve AI accuracy, app performance, and user experience</li>
+      <li>Send notifications about trial status, reward milestones, and subscription updates</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>We use the following third-party services to operate the App:</p>
+    <table>
+      <tr><th>Service</th><th>Purpose</th><th>Data Shared</th><th>Retention</th></tr>
+      <tr><td>OpenAI</td><td>AI processing of voice, text, and photo inputs for food identification and macro calculation</td><td>Meal descriptions, food photos (text/image only, no personally identifiable information)</td><td>Not stored by OpenAI (API usage, not training)</td></tr>
+      <tr><td>Supabase</td><td>Secure cloud database hosting</td><td>All account and nutrition data</td><td>Encrypted at rest, retained until account deletion</td></tr>
+      <tr><td>Apple (Sign in with Apple)</td><td>User authentication</td><td>Apple ID, email (can be hidden)</td><td>Per Apple's privacy policy</td></tr>
+      <tr><td>RevenueCat</td><td>Subscription and in-app purchase management</td><td>Apple ID, purchase history, subscription status</td><td>Per RevenueCat's privacy policy</td></tr>
+    </table>
+
+    <h2>Data Sources</h2>
+    <p>Nutrition data is powered by the USDA FoodData Central database (public domain), containing 61,000+ foods. Additional sources include restaurant nutrition information and manufacturer-provided data.</p>
+    <p>Source: U.S. Department of Agriculture, Agricultural Research Service. FoodData Central, 2024. <a href="https://fdc.nal.usda.gov">fdc.nal.usda.gov</a></p>
+
+    <h2>Data Security</h2>
+    <ul>
+      <li>All data encrypted at rest and in transit (HTTPS/TLS)</li>
+      <li>Row Level Security (RLS) ensures users can only access their own data</li>
+      <li>API rate limiting to prevent abuse</li>
+      <li>Secure Apple Sign In authentication (no passwords stored)</li>
+      <li>Regular security audits of database access policies</li>
+    </ul>
+
+    <h2>Your Privacy Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>View and export your nutrition data at any time (JSON format available in-app)</li>
+      <li>Edit your meals, food items, goals, and account information</li>
+      <li>Delete your account and ALL associated data permanently (irreversible)</li>
+      <li>Opt out of photo-based tracking and use voice/text entry only</li>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – MacroPath AI</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --blue: #007AFF; --dark: #1d1d1f; --mid: #6e6e73; --light: #f5f5f7; --white: #fff; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--light); color: var(--dark); line-height: 1.7;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    body > nav {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 60px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.05rem; font-weight: 700; color: var(--dark); text-decoration: none;
+    }
+    .nav-brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-brand .logo-fb {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: linear-gradient(135deg,#c7b8ea,#8b5cf6);
+      display: none; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a { font-size: 0.875rem; color: var(--mid); font-weight: 500; }
+    .nav-links a:hover { color: var(--dark); text-decoration: none; }
+    .nav-cta { background: var(--blue); color: #fff !important; padding: .4rem 1rem; border-radius: 18px; font-weight: 600 !important; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .85; }
+    .page-hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d2d30 100%);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.75rem,4vw,2.5rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.3rem;
+    }
+    .page-hero .meta { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-top: 0.3rem; }
+    .content-wrap {
+      flex: 1; max-width: 760px; width: 100%; margin: 0 auto; padding: 3rem 2rem;
+    }
+    .content-wrap h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--dark);
+      margin-top: 2.25rem; margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem; border-bottom: 2px solid #e5e7eb;
+    }
+    .content-wrap p { margin-bottom: 1rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap ul, .content-wrap ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+    .content-wrap li { margin-bottom: 0.35rem; color: #374151; font-size: 0.975rem; }
+    .content-wrap strong { color: var(--dark); font-weight: 600; }
+    .content-wrap table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.875rem; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .content-wrap th, .content-wrap td { border: 1px solid #e5e7eb; padding: 0.65rem 0.9rem; text-align: left; }
+    .content-wrap th { background: #f9fafb; font-weight: 600; color: var(--dark); }
+    .content-wrap td { background: #fff; color: #374151; }
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.5);
+      padding: 2rem 2rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    footer .brand { color: #fff; font-weight: 700; font-size: 0.95rem; }
+    footer nav { background: none !important; border: none !important; height: auto; padding: 0; display: flex; flex-wrap: wrap; align-items: center; backdrop-filter: none; }
+    footer nav a { color: rgba(255,255,255,.6); font-size: 0.875rem; margin-left: 1.25rem; }
+    footer nav a:hover { color: #fff; text-decoration: none; }
+    footer .copy { font-size: 0.78rem; width: 100%; text-align: center; margin-top: 0.5rem; }
+    @media (max-width:640px) {
+      body > nav { padding: 0 1rem; }
+      .nav-links .hide-mobile { display: none; }
+      .content-wrap { padding: 2rem 1.25rem; }
+      footer { padding: 1.5rem 1.25rem; }
+      footer nav a { margin-left: 0.9rem; }
+    }
+    @media (prefers-color-scheme:dark) {
+      body { background: #111; color: #f5f5f7; }
+      body > nav { background: rgba(0,0,0,.88); border-color: rgba(255,255,255,.1); }
+      .nav-brand { color: #f5f5f7; }
+      .nav-links a { color: rgba(255,255,255,.6); }
+      .nav-links a:hover { color: #fff; }
+      .content-wrap h2 { color: #f5f5f7; border-color: #333; }
+      .content-wrap p, .content-wrap li { color: #d1d5db; }
+      .content-wrap strong { color: #f5f5f7; }
+      .content-wrap th { background: #1c1c1e; color: #f5f5f7; border-color: #333; }
+      .content-wrap td { background: #141414; color: #d1d5db; border-color: #333; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">
+    <img src="/assets/app-logo.png" alt="MacroPath AI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="logo-fb">🎙</div>
+    MacroPath AI
+  </a>
+  <div class="nav-links">
+    <a href="/#three-ways" class="hide-mobile">Features</a>
+    <a href="/#gallery" class="hide-mobile">Screenshots</a>
+    <a href="/support.html">Support</a>
+    <a href="https://apps.apple.com/app/idPLACEHOLDER" class="nav-cta" target="_blank" rel="noopener">Download</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last Updated: February 18, 2026</p>
+</div>
+
+<div class="content-wrap">
+<h2>Introduction</h2>
     <p>MacroPath AI ("we", "our", "us") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and protect your information when you use the MacroPath AI mobile application ("the App").</p>
 
     <h2>Information We Collect</h2>
@@ -129,10 +411,18 @@
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:support@macropathai.com">support@macropathai.com</a><br />
     Website: <a href="https://www.macropathai.com">www.macropathai.com</a></p>
+</div>
 
-    <footer>
-      <p>&copy; 2026 MacroPath AI. All rights reserved. | <a href="/">Home</a> | <a href="/terms.html">Terms of Service</a></p>
-    </footer>
-  </div>
+<footer>
+  <div class="brand">MacroPath AI</div>
+  <nav>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/support.html">Support</a>
+    <a href="https://apps.apple.com/app/idPLACEHOLDER" target="_blank" rel="noopener">App Store</a>
+  </nav>
+  <div class="copy">&copy; 2026 MacroPath AI. All rights reserved.</div>
+</footer>
+
 </body>
 </html>
