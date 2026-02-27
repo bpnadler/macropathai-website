@@ -100,14 +100,19 @@
           .feat-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
           .feat-card p { font-size: .9rem; color: var(--mid); line-height: 1.55; }
           /* GALLERY */
-          #gallery { background: var(--white); overflow: hidden; }
-          .gallery-scroll { display: flex; gap: 1.5rem; padding: 1rem 2rem 2rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-          .gallery-scroll::-webkit-scrollbar { display: none; }
-          .gallery-item { flex-shrink: 0; scroll-snap-align: center; width: 200px; }
-          .gallery-phone { background: #1d1d1f; border-radius: 36px; padding: 8px; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
-          .gallery-phone img { width: 100%; border-radius: 29px; display: block; }
-          .gallery-label { text-align: center; font-size: .8rem; color: var(--mid); margin-top: .75rem; font-weight: 500; }
-          /* WATCH */
+        #gallery { background: var(--white); }
+        .gallery-tabs { display: flex; gap: .5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+        .gallery-tab { background: transparent; border: 1.5px solid rgba(0,0,0,.12); color: var(--mid); padding: .45rem 1.2rem; border-radius: 20px; font-size: .875rem; font-weight: 600; cursor: pointer; transition: all .2s; }
+        .gallery-tab.active, .gallery-tab:hover { background: var(--dark); border-color: var(--dark); color: #fff; }
+        .gallery-group { display: none; }
+        .gallery-group.active { display: block; }
+        .gallery-phones-row { display: flex; gap: 1.25rem; justify-content: center; align-items: flex-end; flex-wrap: wrap; }
+        .gallery-phone-item { display: flex; flex-direction: column; align-items: center; gap: .6rem; flex-shrink: 0; }
+        .gallery-phone-frame { background: #1d1d1f; border-radius: 32px; padding: 7px; box-shadow: 0 16px 48px rgba(0,0,0,.18); width: 160px; }
+        .gallery-phone-frame img { width: 100%; border-radius: 26px; display: block; }
+        .gallery-phone-label { font-size: .75rem; color: var(--mid); font-weight: 500; text-align: center; }
+        @media (max-width: 600px) { .gallery-phone-frame { width: 130px; } }
+                /* WATCH */
           #watch { background: var(--dark); color: #fff; text-align: center; }
           #watch .section-label { color: #86efac; }
           #watch .section-title { color: #fff; }
@@ -387,63 +392,98 @@
     </section>
   
     <section id="gallery">
-        <div class="container">
-              <div class="section-label">See It In Action</div>
-              <h2 class="section-title">Every screen, built for speed.</h2>
-              <p class="section-sub">Clean, native iOS design with all the detail you need — none of the clutter you don't.</p>
-        </div>
-        <div class="gallery-scroll">
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/meals-breakfast-lunch.png" alt="Meals" loading="lazy"></div>
-                      <div class="gallery-label">Meals Log</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/goals.png" alt="Goals" loading="lazy"></div>
-                      <div class="gallery-label">Goals</div>
+  <div class="container">
+    <div class="section-label">See It In Action</div>
+    <h2 class="section-title">Every screen, built for speed.</h2>
+    <p class="section-sub">Clean, native iOS design with all the detail you need — none of the clutter you don't.</p>
 
-        <div class="gallery-item">
-          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.27.png" alt="AI Goals Coach" loading="lazy"></div>
-          <div class="gallery-label">AI Goals Coach</div>
+    <div class="gallery-tabs">
+      <button class="gallery-tab active" onclick="switchGallery('logging')">Logging</button>
+      <button class="gallery-tab" onclick="switchGallery('goals')">Goals</button>
+      <button class="gallery-tab" onclick="switchGallery('app')">App</button>
+    </div>
+
+    <div id="gallery-logging" class="gallery-group active">
+      <div class="gallery-phones-row">
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/shoot-it-submit.jpeg" alt="Camera" loading="lazy"></div>
+          <div class="gallery-phone-label">Shoot It</div>
         </div>
-        <div class="gallery-item">
-          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.25.png" alt="Nutrition Presets" loading="lazy"></div>
-          <div class="gallery-label">Nutrition Presets</div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/shoot-it-confirm-foods.png" alt="AI Food ID" loading="lazy"></div>
+          <div class="gallery-phone-label">AI Identifies Food</div>
         </div>
-        <div class="gallery-item">
-          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.22.07.png" alt="Macro Ranges" loading="lazy"></div>
-          <div class="gallery-label">Macro Ranges</div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/shoot-it-post-logging.png" alt="After Logging" loading="lazy"></div>
+          <div class="gallery-phone-label">Logged</div>
         </div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/shoot-it-submit.jpeg" alt="Camera" loading="lazy"></div>
-                      <div class="gallery-label">Photo Capture</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/shoot-it-confirm-foods.png" alt="AI ID" loading="lazy"></div>
-                      <div class="gallery-label">AI Food ID</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/shoot-it-post-logging.png" alt="Logged" loading="lazy"></div>
-                      <div class="gallery-label">After Logging</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/food agent.png" alt="Agent" loading="lazy"></div>
-                      <div class="gallery-label">Food Agent</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/favorites.png" alt="Favorites" loading="lazy"></div>
-                      <div class="gallery-label">Favorites</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/activity-post-shoot it.png" alt="Activity" loading="lazy"></div>
-                      <div class="gallery-label">Activity</div>
-              </div>
-              <div class="gallery-item">
-                      <div class="gallery-phone"><img src="/assets/rewards.png" alt="Rewards" loading="lazy"></div>
-                      <div class="gallery-label">Rewards</div>
-              </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/food agent.png" alt="Food Agent" loading="lazy"></div>
+          <div class="gallery-phone-label">Food Agent</div>
         </div>
-    </section>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/meals-breakfast-lunch.png" alt="Meals Log" loading="lazy"></div>
+          <div class="gallery-phone-label">Meals Log</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gallery-goals" class="gallery-group">
+      <div class="gallery-phones-row">
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.20.png" alt="Goals Dashboard" loading="lazy"></div>
+          <div class="gallery-phone-label">Goals Dashboard</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.27.png" alt="AI Coach" loading="lazy"></div>
+          <div class="gallery-phone-label">AI Coach</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.15.png" alt="Nutrition Presets" loading="lazy"></div>
+          <div class="gallery-phone-label">Presets</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.25.png" alt="AI Conversation" loading="lazy"></div>
+          <div class="gallery-phone-label">Conversation</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.22.07.png" alt="Macro Ranges" loading="lazy"></div>
+          <div class="gallery-phone-label">Macro Ranges</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gallery-app" class="gallery-group">
+      <div class="gallery-phones-row">
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/favorites.png" alt="Favorites" loading="lazy"></div>
+          <div class="gallery-phone-label">Favorites</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/activity-post-shoot it.png" alt="Activity" loading="lazy"></div>
+          <div class="gallery-phone-label">Activity</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/rewards.png" alt="Rewards" loading="lazy"></div>
+          <div class="gallery-phone-label">Rewards</div>
+        </div>
+        <div class="gallery-phone-item">
+          <div class="gallery-phone-frame"><img src="/assets/goals.png" alt="Goals" loading="lazy"></div>
+          <div class="gallery-phone-label">Goals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchGallery(group) {
+  document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.gallery-group').forEach(g => g.classList.remove('active'));
+  document.getElementById('gallery-' + group).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
   
     <section id="watch">
       <div class="container">
