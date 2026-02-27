@@ -154,6 +154,20 @@
                   body > nav .nav-brand { color: #f5f5f7; }
                   #gallery { background: #080808; }
           }
+        
+        /* AI GOALS */
+        #ai-goals { background: linear-gradient(160deg, #f0f4ff 0%, #fafafa 60%, #f0fff4 100%); }
+        .goals-feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .goals-phones { display: flex; justify-content: center; align-items: flex-end; gap: 1rem; }
+        .goals-phones .phone-frame { width: 180px; background: #1d1d1f; border-radius: 36px; padding: 8px; box-shadow: 0 24px 60px rgba(0,0,0,.2); }
+        .goals-phones .phone-frame img { width: 100%; border-radius: 29px; display: block; }
+        .goals-highlights { display: flex; flex-direction: column; gap: 1.25rem; }
+        .goals-highlight-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .goals-highlight-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(0,122,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .goals-highlight-item h4 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
+        .goals-highlight-item p { font-size: .875rem; color: var(--mid); line-height: 1.5; }
+        @media (max-width:900px) { .goals-feature-grid { grid-template-columns: 1fr; } .goals-phones { order: -1; } }
+        @media (max-width:600px) { .goals-phones .phone-wrap.side { display: none; } }
         </style>
   </head>
   <body>
@@ -243,10 +257,10 @@
                                 <p>Conversational AI that handles everything. Create meals, fix entries ("actually 3 eggs not 2"), delete items — all through natural language.</p>
                       </div>
                       <div class="feat-card">
-                                <div class="feat-icon" style="background:#e8fff0">&#127919;</div>
-                                <h3>Smart Goals</h3>
-                                <p>Set exact targets or flexible ranges (1800–2200 cal, 120–150g protein). A Goals Agent can build a personalized plan for you.</p>
-                      </div>
+          <div class="feat-icon" style="background:#e8fff0">&#129504;</div>
+          <h3>AI Goals Coach</h3>
+          <p>Chat with an AI nutritionist — by voice or text — to get a personalized macro plan. Set flexible ranges like 1,800–2,200 cal or 130–160g protein. Because consistency beats perfection.</p>
+        </div>
                       <div class="feat-card">
                                 <div class="feat-icon" style="background:#fff3e8">&#11088;</div>
                                 <h3>Favorites</h3>
@@ -271,7 +285,72 @@
         </div>
     </section>
   
-    <section id="rewards">
+    
+<section id="ai-goals">
+  <div class="container">
+    <div class="section-label">AI-Powered Goal Setting</div>
+    <h2 class="section-title">Meet your personal<br>macro coach.</h2>
+    <p class="section-sub">Just tell it about yourself — the AI does the rest. Get personalized macro goals in one conversation, or customize every detail yourself.</p>
+    <div class="goals-feature-grid">
+      <div class="goals-phones">
+        <div class="phone-wrap side" style="transform:scale(.88);opacity:.85">
+          <div class="phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.20.png" alt="Goals dashboard with range bars" loading="lazy"></div>
+        </div>
+        <div class="phone-wrap center" style="transform:scale(1.06);z-index:2">
+          <div class="phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.27.png" alt="AI Coach goal setting" loading="eager"></div>
+        </div>
+        <div class="phone-wrap side" style="transform:scale(.88);opacity:.85">
+          <div class="phone-frame"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.25.png" alt="Nutrition presets" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="goals-highlights">
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#129302;</div>
+          <div>
+            <h4>3-Tab Goal Editor</h4>
+            <p>AI Coach, manual Goals, and Biometrics — all in one place. The AI Coach tab is a real conversation with a nutritionist.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127919;</div>
+          <div>
+            <h4>Macro Range Targets</h4>
+            <p>Set a min/max for every macro — calories, protein, carbs, and fat. Progress bars show your range visually, so you know when you're "in the zone."</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127381;</div>
+          <div>
+            <h4>8 Nutrition Presets</h4>
+            <p>General Fitness, Fat Loss, Muscle Gain, Keto, Mediterranean, Plant-Based, Endurance, and GLP-1/Ozempic — tap any preset to start a guided consultation.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#128100;</div>
+          <div>
+            <h4>Saved Biometric Profile</h4>
+            <p>Enter your stats once — height, weight, age, activity level. The AI Coach uses your profile to make instant, personalized recommendations without asking again.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#128138;</div>
+          <div>
+            <h4>GLP-1 / Ozempic Support</h4>
+            <p>Science-backed nutrition profile for GLP-1 medication users. Prioritizes protein at 30–35% to preserve muscle mass, with guidelines from ACLM, ASN, and ENDO 2025.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127897;&#65039;</div>
+          <div>
+            <h4>Voice + Text Input</h4>
+            <p>Talk to your goals coach by voice or type your questions. Full text-to-speech responses — hands-free goal setting that actually works.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="rewards">
         <div class="container">
               <div class="section-label">Rewards Program</div>
               <div class="rewards-headline">Track more. Pay less.</div>
@@ -321,6 +400,19 @@
               <div class="gallery-item">
                       <div class="gallery-phone"><img src="/assets/goals.png" alt="Goals" loading="lazy"></div>
                       <div class="gallery-label">Goals</div>
+
+        <div class="gallery-item">
+          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.27.png" alt="AI Goals Coach" loading="lazy"></div>
+          <div class="gallery-label">AI Goals Coach</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.25.png" alt="Nutrition Presets" loading="lazy"></div>
+          <div class="gallery-label">Nutrition Presets</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-phone"><img src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.22.07.png" alt="Macro Ranges" loading="lazy"></div>
+          <div class="gallery-label">Macro Ranges</div>
+        </div>
               </div>
               <div class="gallery-item">
                       <div class="gallery-phone"><img src="/assets/shoot-it-submit.jpeg" alt="Camera" loading="lazy"></div>
