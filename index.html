@@ -567,42 +567,52 @@ function lbKeyHandler(e) {
 })();
 
 // ---- 9:41 TIME OVERLAY ----
-// Overlay the simulator time with 9:41 using absolutely-positioned spans
+// Overlay the simulator time with a background cover + 9:41 text
 (function() {
-  // Find all phone frame images that have a status bar (iPhone screenshots)
-  // These are the lightbox-tappable images inside .phone-frame, .strip-frame, .way-phone
   const frames = document.querySelectorAll('.phone-frame, .strip-frame, .way-phone');
   frames.forEach(frame => {
     const img = frame.querySelector('img');
     if (!img) return;
-    // Skip watch images and sample photos
     if (img.src.includes('watch') || img.src.includes('sample') || img.src.includes('app-logo')) return;
     
     frame.style.position = 'relative';
     
     function addOverlay() {
-      // Remove any existing overlay
-      const existing = frame.querySelector('.time-941');
-      if (existing) existing.remove();
+      // Remove any existing overlays
+      frame.querySelectorAll('.time-941-bg, .time-941').forEach(el => el.remove());
       
-      const overlay = document.createElement('span');
-      overlay.className = 'time-941';
-      overlay.textContent = '9:41';
-      
-      // Position the overlay based on the rendered image size
-      // iPhone screenshots: time is at top-left of the status bar
-      // Approximately: 8% from left, 1.8% from top of the image
       const imgRect = img.getBoundingClientRect();
       const frameRect = frame.getBoundingClientRect();
       
       const imgOffsetLeft = imgRect.left - frameRect.left;
       const imgOffsetTop = imgRect.top - frameRect.top;
       
-      // Time position: roughly 8% from left edge of image, 1.8% from top
-      const timeLeft = imgOffsetLeft + imgRect.width * 0.065;
-      const timeTop = imgOffsetTop + imgRect.height * 0.018;
-      const fontSize = Math.max(6, imgRect.width * 0.06);
+      // Time position: roughly 6.5% from left edge of image, 1.5% from top
+      const timeLeft = imgOffsetLeft + imgRect.width * 0.063;
+      const timeTop = imgOffsetTop + imgRect.height * 0.014;
+      const fontSize = Math.max(6, imgRect.width * 0.058);
+      const bgWidth = fontSize * 2.8;
+      const bgHeight = fontSize * 1.3;
       
+      // Background cover to hide original time
+      const bg = document.createElement('span');
+      bg.className = 'time-941-bg';
+      Object.assign(bg.style, {
+        position: 'absolute',
+        left: timeLeft + 'px',
+        top: timeTop + 'px',
+        width: bgWidth + 'px',
+        height: bgHeight + 'px',
+        background: '#fff',
+        zIndex: '9',
+        pointerEvents: 'none',
+        borderRadius: '1px'
+      });
+      
+      // 9:41 text overlay
+      const overlay = document.createElement('span');
+      overlay.className = 'time-941';
+      overlay.textContent = '9:41';
       Object.assign(overlay.style, {
         position: 'absolute',
         left: timeLeft + 'px',
@@ -618,13 +628,12 @@ function lbKeyHandler(e) {
         whiteSpace: 'nowrap'
       });
       
+      frame.appendChild(bg);
       frame.appendChild(overlay);
     }
     
     if (img.complete) addOverlay();
     else img.addEventListener('load', addOverlay);
-    
-    // Also re-apply on resize
     window.addEventListener('resize', () => setTimeout(addOverlay, 100), {passive: true});
   });
 })();
