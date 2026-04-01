@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>MacroPath AI – Nutrition Tracking That Actually Sticks</title>
+    <meta name="description" content="MacroPath AI is the flexible nutrition tracker that fits your life. Speak it, type it, or snap it – AI handles the rest. Consistency over perfection." />
+    <style>
+          *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+          :root {
+                  --blue:#007AFF; --green:#34C759; --red:#FF3B30; --orange:#FF9500;
+                  --purple:#AF52DE; --teal:#32ADE6; --bg:#f5f5f7; --white:#ffffff;
+                  --dark:#1d1d1f; --mid:#6e6e73; --light:#f5f5f7;
+                  --shoot-color:#BF5AF2; --say-color:#30D158; --type-color:#32ADE6;
+          }
+          html { scroll-behavior: smooth; }
+          body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif; background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+          a { color: var(--blue); text-decoration: none; }
+          a:hover { text-decoration: underline; }
+          /* NAV */
+          body > nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+          body > nav .nav-brand { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 700; color: var(--dark); text-decoration: none; }
+          body > nav .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+          body > nav .nav-brand .logo-fb { width: 32px; height: 32px; border-radius: 8px; background: linear-gradient(135deg,#c7b8ea,#8b5cf6); display: none; align-items: center; justify-content: center; font-size: 16px; }
+          body > nav .nav-cta { background: var(--blue); color: #fff; padding: .45rem 1.1rem; border-radius: 20px; font-size: .875rem; font-weight: 600; transition: opacity .2s; }
+          body > nav .nav-cta:hover { opacity: .85; text-decoration: none; }
+          /* SECTIONS */
+          section { padding: 80px 2rem; }
+          .container { max-width: 1100px; margin: 0 auto; }
+          .section-label { font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: .75rem; }
+          .section-title { font-size: clamp(2rem,4vw,2.75rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 1rem; }
+          .section-sub { font-size: 1.1rem; color: var(--mid); max-width: 560px; margin-bottom: 2.5rem; }
+          /* HERO */
+          #hero { background: linear-gradient(160deg,#f0f4ff 0%,#fafafa 60%,#f0fff4 100%); padding: 80px 2rem 60px; text-align: center; }
+          .hero-eyebrow { display: inline-block; background: rgba(0,122,255,.1); color: var(--blue); padding: .3rem .9rem; border-radius: 20px; font-size: .85rem; font-weight: 600; margin-bottom: 1.5rem; }
+          .hero-title { font-size: clamp(2.4rem,6vw,4rem); font-weight: 900; line-height: 1.1; letter-spacing: -.03em; margin-bottom: .5rem; }
+          .hero-tagline { font-size: clamp(1.1rem,2.5vw,1.4rem); color: var(--mid); margin-bottom: 1.75rem; font-style: italic; }
+          .hero-desc { font-size: 1.1rem; color: var(--mid); max-width: 540px; margin: 0 auto 2rem; }
+          .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem; }
+          .btn-appstore-badge { display: inline-block; transition: transform .2s, opacity .2s; }
+          .btn-appstore-badge:hover { transform: translateY(-2px); opacity: .88; text-decoration: none; }
+          .appstore-badge-img { height: 54px; width: auto; display: block; }
+          .hero-phones { display: flex; justify-content: center; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap; }
+          .phone-wrap { position: relative; flex-shrink: 0; }
+          .phone-wrap.center { transform: scale(1.06); z-index: 2; }
+          .phone-wrap.side { transform: scale(.88); opacity: .85; }
+          .phone-frame { width: 220px; background: #1d1d1f; border-radius: 40px; padding: 10px; box-shadow: 0 30px 80px rgba(0,0,0,.25); }
+          .phone-frame img { width: 100%; border-radius: 32px; display: block; }
+          /* THREE WAYS */
+          #three-ways { background: var(--dark); color: #fff; }
+          #three-ways .section-label { color: #86efac; }
+          #three-ways .section-title { color: #fff; }
+          #three-ways .section-sub { color: rgba(255,255,255,.6); }
+          .ways-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; }
+          .way-card { border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; }
+          .way-card.shoot { background: linear-gradient(135deg,#2d1b3d,#4a1d6b); }
+          .way-card.say { background: linear-gradient(135deg,#0d2b1a,#1a4d2e); }
+          .way-card.type { background: linear-gradient(135deg,#0d1f2d,#0a3550); }
+          .way-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin-bottom: 1.25rem; }
+          .way-card.shoot .way-icon { background: rgba(191,90,242,.25); }
+          .way-card.say .way-icon { background: rgba(48,209,88,.25); }
+          .way-card.type .way-icon { background: rgba(50,173,230,.25); }
+          .way-badge { display: inline-block; padding: .2rem .7rem; border-radius: 12px; font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .6rem; }
+          .way-card.shoot .way-badge { background: rgba(191,90,242,.3); color: #d8a4ff; }
+          .way-card.say .way-badge { background: rgba(48,209,88,.3); color: #86efac; }
+          .way-card.type .way-badge { background: rgba(50,173,230,.3); color: #93d5f7; }
+          .way-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: .5rem; color: #fff; }
+          .way-card p { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.6; margin-bottom: 1.25rem; }
+          .way-phone { width: 100%; max-width: 180px; background: #111; border-radius: 28px; padding: 7px; box-shadow: 0 16px 40px rgba(0,0,0,.5); margin: 0 auto; display: block; }
+          .way-phone img { width: 100%; border-radius: 22px; display: block; }
+    /* SCREENSHOT STRIPS inside way cards */
+    .way-strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+    .way-strip::-webkit-scrollbar { display: none; }
+    .way-strip-item { flex-shrink: 0; scroll-snap-align: start; width: 130px; }
+    .way-strip-item .strip-frame { background: #111; border-radius: 22px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+    .way-strip-item .strip-frame img { width: 100%; border-radius: 18px; display: block; }
+          /* REWARDS */
+          #rewards { background: linear-gradient(135deg,#78350f 0%,#92400e 50%,#78350f 100%); color: #fff; }
+          #rewards .section-label { color: #fbbf24; }
+          #rewards .section-title { color: #fff; }
+          .rewards-headline { font-size: clamp(1.6rem,3.5vw,2.2rem); font-weight: 900; color: #fbbf24; letter-spacing: -.02em; margin-bottom: .5rem; line-height: 1.15; }
+          .rewards-sub { font-size: 1.05rem; color: rgba(255,255,255,.9); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.6; }
+          .rewards-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.25rem; margin-bottom: 1.5rem; }
+          .reward-tier { background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 1.5rem; text-align: center; transition: transform .2s, background .2s; }
+          .reward-tier:hover { transform: translateY(-3px); background: rgba(0,0,0,.35); }
+          .reward-tier .medal { font-size: 2.5rem; margin-bottom: .5rem; }
+          .reward-tier h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: .25rem; }
+          .reward-tier .meals { font-size: .85rem; color: rgba(255,255,255,.8); margin-bottom: .65rem; }
+          .reward-tier .discount { display: inline-block; background: #fbbf24; color: #78350f; padding: .25rem .8rem; border-radius: 10px; font-size: .9rem; font-weight: 800; }
+          .reward-note { font-size: .875rem; color: rgba(255,255,255,.75); text-align: center; margin-top: .25rem; }
+          /* FEATURES */
+          #features { background: var(--light); }
+          .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.5rem; }
+          .feat-card { background: var(--white); border-radius: 18px; padding: 1.75rem; box-shadow: 0 2px 16px rgba(0,0,0,.06); transition: transform .2s,box-shadow .2s; }
+          .feat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.1); }
+          .feat-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+          .feat-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+          .feat-card p { font-size: .9rem; color: var(--mid); line-height: 1.55; }
+          /* GALLERY */
+        #gallery { background: var(--white); }
+        .gallery-tabs { display: flex; gap: .5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+        .gallery-tab { background: transparent; border: 1.5px solid rgba(0,0,0,.12); color: var(--mid); padding: .45rem 1.2rem; border-radius: 20px; font-size: .875rem; font-weight: 600; cursor: pointer; transition: all .2s; }
+        .gallery-tab.active, .gallery-tab:hover { background: var(--dark); border-color: var(--dark); color: #fff; }
+        .gallery-group { display: none; }
+        .gallery-group.active { display: block; }
+        .gallery-phones-row { display: flex; gap: 1.25rem; justify-content: center; align-items: flex-end; flex-wrap: wrap; }
+        .gallery-phone-item { display: flex; flex-direction: column; align-items: center; gap: .6rem; flex-shrink: 0; }
+        .gallery-phone-frame { background: #1d1d1f; border-radius: 32px; padding: 7px; box-shadow: 0 16px 48px rgba(0,0,0,.18); width: 160px; }
+        .gallery-phone-frame img { width: 100%; border-radius: 26px; display: block; }
+        .gallery-phone-label { font-size: .75rem; color: var(--mid); font-weight: 500; text-align: center; }
+        @media (max-width: 600px) { .gallery-phone-frame { width: 130px; } }
+                /* WATCH */
+          #watch { background: var(--dark); color: #fff; text-align: center; }
+          #watch .section-label { color: #86efac; }
+          #watch .section-title { color: #fff; }
+          #watch .section-sub { color: rgba(255,255,255,.6); margin: 0 auto 2rem; }
+          .watch-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem; }
+          .watch-badge { background: rgba(255,255,255,.1); border-radius: 12px; padding: .6rem 1.2rem; font-size: .9rem; color: rgba(255,255,255,.85); display: flex; align-items: center; gap: .5rem; }
+          .watch-showcase { display: flex; justify-content: center; align-items: flex-end; gap: 2rem; flex-wrap: wrap; padding: 1rem 0 2rem; }
+          .watch-item { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+          .watch-item.center-watch { transform: scale(1.12); z-index: 2; }
+          .watch-item.side-watch { transform: scale(0.85); opacity: 0.75; }
+          .watch-mockup-img { width: 220px; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.7)); }
+          .watch-screen-label { font-size: .8rem; color: rgba(255,255,255,.55); font-weight: 500; letter-spacing: .02em; margin-top: .25rem; }
+          @media (max-width:700px) {
+            .watch-item.side-watch { display: none; }
+            .watch-item.center-watch { transform: scale(1); }
+          }
+          
+          /* CTA */
+          #cta { background: linear-gradient(135deg,#007AFF 0%,#5856D6 100%); color: #fff; text-align: center; }
+          #cta .section-title { color: #fff; }
+          #cta .section-sub { color: rgba(255,255,255,.75); margin: 0 auto 2rem; }
+          /* FOOTER */
+          footer { background: var(--dark); color: rgba(255,255,255,.5); padding: 2.5rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+          footer .brand { color: #fff; font-weight: 700; font-size: 1rem; }
+          footer nav a { color: rgba(255,255,255,0.75); font-size: .9rem; margin-left: 1.5rem; background: none; border: none; padding: 0; }
+          footer nav { background: none !important; border: none !important; height: auto; padding: 0; display: flex; flex-wrap: wrap; align-items: center; backdrop-filter: none; }
+          footer nav a:hover { color: #fff; text-decoration: none; }
+          footer .copy { font-size: .8rem; width: 100%; text-align: center; margin-top: 1rem; }
+          @media (max-width:700px) {
+                  section { padding: 60px 1.25rem; }
+                  .phone-wrap.side { display: none; }
+                  .hero-phones { gap: 0; }
+                  footer nav a { margin-left: 1rem; }
+                  .ways-grid { grid-template-columns: 1fr; }
+          }
+          @media (prefers-color-scheme:dark) {
+                  body { background: #000; color: #f5f5f7; }
+                  #hero { background: linear-gradient(160deg,#0a0f1e 0%,#080808 60%,#031208 100%); }
+                  .hero-eyebrow { background: rgba(0,122,255,.2); }
+                  #features { background: #111; }
+                  .feat-card { background: #1c1c1e; box-shadow: 0 2px 16px rgba(0,0,0,.3); }
+                  .feat-card h3 { color: #f5f5f7; }
+                  body > nav { background: rgba(0,0,0,.88); border-color: rgba(255,255,255,.1); }
+                  body > nav .nav-brand { color: #f5f5f7; }
+                  #gallery { background: #080808; }
+          }
+        
+        /* AI GOALS */
+        #ai-goals { background: linear-gradient(160deg, #f0f4ff 0%, #fafafa 60%, #f0fff4 100%); }
+        .goals-feature-grid { display: flex; flex-direction: column; gap: 2.5rem; }
+        .goals-phones { display: flex; justify-content: center; align-items: flex-end; gap: 1rem; }
+        .goals-phones .phone-frame { width: 180px; background: #1d1d1f; border-radius: 36px; padding: 8px; box-shadow: 0 24px 60px rgba(0,0,0,.2); }
+        .goals-phones .phone-frame img { width: 100%; border-radius: 29px; display: block; }
+        .goals-highlights { display: flex; flex-direction: column; gap: 1.25rem; }
+        .goals-highlight-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .goals-highlight-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(0,122,255,.1); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .goals-highlight-item h4 { font-size: .95rem; font-weight: 700; margin-bottom: .2rem; }
+        .goals-highlight-item p { font-size: .875rem; color: var(--mid); line-height: 1.5; }
+        @media (max-width:900px) { .goals-feature-grid { grid-template-columns: 1fr; } .goals-phones { order: -1; } }
+        @media (max-width:600px) { .goals-phones .phone-wrap.side { display: none; } }
+        
+        /* GOALS COACH STRIP */
+        .goals-coach-strip-wrap { position: relative; }
+        .goals-coach-strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 1rem 0 0.5rem; }
+        .goals-coach-strip::-webkit-scrollbar { display: none; }
+        .goals-coach-strip-item { flex-shrink: 0; scroll-snap-align: center; width: 200px; }
+        .goals-coach-strip-item .strip-frame { background: #1d1d1f; border-radius: 32px; padding: 8px; box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+        .goals-coach-strip-item .strip-frame img { width: 100%; border-radius: 26px; display: block; }
+        .goals-strip-dots { display: flex; justify-content: center; gap: 6px; margin-top: .75rem; }
+        .goals-strip-dots .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(0,0,0,.15); transition: background .2s, transform .2s; cursor: pointer; }
+        .goals-strip-dots .dot.active { background: var(--blue); transform: scale(1.25); }
+        @media (max-width:600px) { .goals-coach-strip-item { width: 160px; } }
+
+        /* LIGHTBOX */
+        .lightbox-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; backdrop-filter: blur(8px); }
+        .lightbox-overlay.open { opacity: 1; pointer-events: all; }
+        .lightbox-inner { position: relative; max-width: min(360px, 85vw); width: 100%; }
+        .lightbox-inner .lb-frame { background: #1d1d1f; border-radius: 48px; padding: 12px; box-shadow: 0 40px 100px rgba(0,0,0,.6); }
+        .lightbox-inner .lb-frame img { width: 100%; border-radius: 38px; display: block; }
+        .lightbox-close { position: absolute; top: -14px; right: -14px; width: 32px; height: 32px; border-radius: 50%; background: #fff; border: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,.3); z-index: 2; }
+        .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 1.4rem; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: background .2s; }
+        .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,.3); }
+        .lightbox-prev { right: calc(100% + 12px); }
+        .lightbox-next { left: calc(100% + 12px); }
+        @media (max-width:600px) { .lightbox-prev { right: auto; left: 4px; } .lightbox-next { left: auto; right: 4px; } .lightbox-inner { max-width: 75vw; } }
+        .lightbox-tappable { cursor: zoom-in; }
+        .lightbox-tappable:hover { opacity: .9; }
+
+</style>
+  </head>
+  <body>
+      <nav>
+            <a class="nav-brand" href="/">
+                    <img src="/assets/app-logo.png" alt="MacroPath AI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="logo-fb">&#127908;</div>
+                    MacroPath AI
+            </a>
+            <a class="nav-cta" href="https://apps.apple.com/app/macropath-ai/id6752740369" target="_blank" rel="noopener">Download Free</a>
+      </nav>
+
+      <section id="hero">
+            <div class="container">
+                    <div class="hero-eyebrow">Now Available on the App Store</div>
+                    <h1 class="hero-title">Nutrition tracking<br>that actually sticks.</h1>
+                    <p class="hero-tagline">"Consistency over perfection"</p>
+                    <p class="hero-desc">Speak it, type it, or snap it — MacroPath AI identifies your food and calculates macros instantly. No manual entry. No barcode scanning. Just fast, effortless tracking.</p>
+                    <div class="hero-actions">
+                              <a class="btn-appstore-badge" href="https://apps.apple.com/app/macropath-ai/id6752740369" target="_blank" rel="noopener">
+                                          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="appstore-badge-img">
+                              </a>
+                    </div>
+                  <div class="hero-phones">
+                          <div class="phone-wrap side">
+                                    <div class="phone-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/goals.png" alt="Goals" loading="lazy"></div>
+                          </div>
+                          <div class="phone-wrap center">
+                                    <div class="phone-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/meals-breakfast-lunch.png" alt="Meals" loading="eager"></div>
+                          </div>
+                          <div class="phone-wrap side">
+                                    <div class="phone-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/shoot-it-confirm-foods.png" alt="Photo logging" loading="lazy"></div>
+                          </div>
+                  </div>
+            </div>
+      </section>
+  
+    <section id="three-ways">
+        <div class="container">
+              <div class="section-label">The Core Feature</div>
+              <h2 class="section-title">Three ways to track.<br>Use whatever fits the moment.</h2>
+              <p class="section-sub">No two meals are the same. MacroPath gives you three fast input methods — all powered by the same AI engine.</p>
+              <div class="ways-grid">
+                      <div class="way-card shoot">
+                                <div class="way-icon">&#128247;</div>
+                                <div class="way-badge">Shoot It</div>
+                                <h3>Snap a photo</h3>
+                                <p>Point your camera at any meal. AI vision identifies every food item, estimates portions, and calculates macros — all before you take another bite.</p>
+                                <div class="way-strip">
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/shoot-1.png" alt="Shoot step 1" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/shoot-2.jpeg" alt="Shoot step 2" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/shoot-3.png" alt="Shoot step 3" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/shoot-4.png" alt="Shoot step 4" loading="lazy"></div></div>
+        </div></div>
+                      <div class="way-card say">
+                                <div class="way-icon">&#127897;&#65039;</div>
+                                <div class="way-badge">Say It</div>
+                                <h3>Just speak naturally</h3>
+                                <p>"I had 2 scrambled eggs, sourdough toast, and coffee with almond milk." The AI transcribes, identifies, calculates, and logs — then speaks a confirmation back.</p>
+                                <div class="way-strip">
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/say-it-1.png" alt="Say step 1" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/say-it-2.png" alt="Say step 2" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/say-it-3.png" alt="Say step 3" loading="lazy"></div></div>
+          <div class="way-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/say-it-4.png" alt="Say step 4" loading="lazy"></div></div>
+        </div></div>
+                      <div class="way-card type">
+                                <div class="way-icon">&#128172;</div>
+                                <div class="way-badge">Type It</div>
+                                <h3>Chat when voice isn't ideal</h3>
+                                <p>Crowded restaurant? Tricky food name like aca&#237; or pho? Just type it. Same AI accuracy, great for pasting ingredient lists from recipes.</p>
+                                <div class="way-phone"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/type it.png" alt="Type to log" loading="lazy"></div>
+                      </div>
+              </div>
+        </div>
+    </section>
+  
+    <section id="features">
+        <div class="container">
+              <div class="section-label">Everything You Need</div>
+              <h2 class="section-title">Just meals and macros. No clutter, no upsells.</h2>
+              <p class="section-sub"><p class="section-sub">Other apps charge you for step counters, water logs, habit trackers, and exercise diaries you didn't ask for. We do one thing: track your meals and calculate your macros. Simple. Focused. Actually worth opening every day.</p>
+              <div class="features-grid">
+                      <div class="feat-card">
+                                <div class="feat-icon" style="background:#e8f4ff">&#129302;</div>
+                                <h3>AI Food Agent</h3>
+                                <p>Conversational AI that handles everything. Create meals, fix entries ("actually 3 eggs not 2"), delete items — all through natural language.</p>
+                      </div>
+                      <div class="feat-card">
+          <div class="feat-icon" style="background:#e8fff0">&#129504;</div>
+          <h3>AI Goals Coach</h3>
+          <p>Chat with an AI nutritionist — by voice or text — to get a personalized macro plan. Set flexible ranges like 1,800–2,200 cal or 130–160g protein. Because consistency beats perfection.</p>
+        </div>
+                      <div class="feat-card">
+                                <div class="feat-icon" style="background:#fff3e8">&#11088;</div>
+                                <h3>Favorites</h3>
+                                <p>Save foods or entire meals as templates. One tap to log your "Weekday Breakfast" or post-workout shake every single time.</p>
+                      </div>
+                      <div class="feat-card">
+                                <div class="feat-icon" style="background:#f3e8ff">&#128202;</div>
+                                <h3>Progress Dashboard</h3>
+                                <p>Visual macro bars fill as you eat. See calories, protein, carbs, and fat progress at a glance relative to your targets.</p>
+                      </div>
+                      <div class="feat-card">
+                                <div class="feat-icon" style="background:#e8f4ff">&#8987;</div>
+                                <h3>Apple Watch</h3>
+                                <p>Log meals from your wrist using Say It voice input. Perfect for quick logging without reaching for your phone.</p>
+                      </div>
+                      <div class="feat-card">
+                                <div class="feat-icon" style="background:#fff8e1">&#9999;&#65039;</div>
+                                <h3>Easy Editing</h3>
+                                <p>Tap any item to edit macros or quantity. Swipe to delete. Edit meals up to 3 days back. Navigate dates with a swipe.</p>
+                      </div>
+              </div>
+        </div>
+    </section>
+  
+    
+<section id="ai-goals">
+  <div class="container">
+    <div class="section-label">AI-Powered Goal Setting</div>
+    <h2 class="section-title">Meet your personal<br>macro coach.</h2>
+    <p class="section-sub">Just tell it about yourself — the AI does the rest. Get personalized macro goals in one conversation, or customize every detail yourself.</p>
+    <div class="goals-feature-grid">
+      <div class="goals-coach-strip-wrap">
+        <div class="goals-coach-strip">
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.20.png" alt="Goals dashboard" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.27.png" alt="AI Coach" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.40.png" alt="Goal setup" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.20.43.png" alt="Macro ranges" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.15.png" alt="Nutrition presets" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.25.png" alt="AI conversation" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.31.png" alt="Diet profile" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.21.50.png" alt="GLP-1 support" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.22.00.png" alt="Custom macros" loading="lazy"></div></div>
+          <div class="goals-coach-strip-item"><div class="strip-frame"><img class="lightbox-tappable" onclick="openLightbox(this)" src="/assets/new goals system screenshots/Simulator Screenshot - iPhone 16 - 2026-02-27 at 11.22.07.png" alt="Final goals" loading="lazy"></div></div>
+        </div>
+        <div class="goals-strip-dots" id="goals-strip-dots"></div>
+      </div>
+      <div class="goals-highlights">
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#129302;</div>
+          <div>
+            <h4>Just talk to it</h4>
+            <p>Tell the AI about yourself and your goals — it asks the right questions and hands you a ready-to-go macro plan. Or dial in every number yourself if you prefer.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127919;</div>
+          <div>
+            <h4>Stop stressing about hitting a perfect number</h4>
+            <p>Set a range instead — like 1,800–2,200 calories or 130–160g protein. As long as you're in the zone, you're winning. The dashboard shows it at a glance.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127381;</div>
+          <div>
+            <h4>A starting point for your eating style</h4>
+            <p>Whether you're cutting, bulking, keto, Mediterranean, plant-based, or on a GLP-1 — pick a profile and the AI builds your plan around it.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#128100;</div>
+          <div>
+            <h4>It remembers you</h4>
+            <p>Enter your height, weight, age, and activity level once. Every time you open the coach after that, it already knows your stats and can give you recommendations immediately.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#128138;</div>
+          <div>
+            <h4>GLP-1 / Ozempic Support</h4>
+            <p>Losing weight fast on Ozempic or Mounjaro? This profile protects your muscle mass while you lose fat — higher protein targets based on published medical guidelines.</p>
+          </div>
+        </div>
+        <div class="goals-highlight-item">
+          <div class="goals-highlight-icon">&#127897;&#65039;</div>
+          <div>
+            <h4>Just talk — or type, whatever feels natural</h4>
+            <p>Speak your questions out loud or type them. The coach talks back. It's the fastest way to get a macro plan without filling out a form.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="rewards">
+        <div class="container">
+              <div class="section-label">Rewards Program</div>
+              <div class="rewards-headline">Track more. Pay less.</div>
+              <p class="section-title" style="color:#fff; font-size:clamp(1.75rem,3.5vw,2.4rem); margin-bottom:.75rem;">The more you log, the less you pay.</p>
+              <p class="rewards-sub">We reward consistency with real money off your subscription. Log meals regularly and MacroPath pays you back — Gold trackers pay half price. Excess meals roll into your bank so good months cover slow ones.</p>
+              <div class="rewards-grid">
+                      <div class="reward-tier">
+                                <div class="medal">&#129351;</div>
+                                <h3>Gold</h3>
+                                <div class="meals">75 meals / month</div>
+                                <div class="discount">50% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#129352;</div>
+                                <h3>Silver</h3>
+                                <div class="meals">50 meals / month</div>
+                                <div class="discount">30% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#129353;</div>
+                                <h3>Bronze</h3>
+                                <div class="meals">25 meals / month</div>
+                                <div class="discount">15% off</div>
+                      </div>
+                      <div class="reward-tier">
+                                <div class="medal">&#127974;</div>
+                                <h3>Meal Bank</h3>
+                                <div class="meals">Up to 200 banked</div>
+                                <div class="discount">Carries over</div>
+                      </div>
+              </div>
+              <p class="reward-note">Only 3 meals per day count toward your total — encouraging consistent daily habits over binge logging.</p>
+        </div>
+    </section>
+  
+    <section id="watch">
+      <div class="container">
+        <div class="section-label" style="color:#86efac">Apple Watch</div>
+        <h2 class="section-title">Log from your wrist.</h2>
+        <p class="section-sub">MacroPath AI on Apple Watch gives you Say It voice logging anywhere — gym floor, grocery store, or mid-run.</p>
+        <div class="watch-badges">
+          <div class="watch-badge">&#8987; Apple Watch support</div>
+          <div class="watch-badge">&#127897;&#65039; Voice-only input</div>
+          <div class="watch-badge">&#9889; Instant AI logging</div>
+          <div class="watch-badge">&#128241; Syncs to iPhone</div>
+        </div>
+        <div class="watch-showcase">
+          <div class="watch-item side-watch">
+            <img class="watch-mockup-img" src="/assets/watch-meals.png" alt="MacroPath AI Watch – Today's Meals" loading="lazy">
+            <div class="watch-screen-label">Today's Meals</div>
+          </div>
+          <div class="watch-item center-watch">
+            <img class="watch-mockup-img" src="/assets/watch-log-food.png" alt="MacroPath AI Watch – Log Food" loading="eager">
+            <div class="watch-screen-label">Log Food</div>
+          </div>
+          <div class="watch-item side-watch">
+            <img class="watch-mockup-img" src="/assets/watch-macros.png" alt="MacroPath AI Watch – Macro Progress" loading="lazy">
+            <div class="watch-screen-label">Macro Progress</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="cta">
+        <div class="container">
+              <h2 class="section-title">Stop abandoning your nutrition tracker.</h2>
+              <p class="section-sub">MacroPath AI is built for real life — fast enough that you'll actually use it every day.</p>
+              <a class="btn-appstore-badge" href="https://apps.apple.com/app/macropath-ai/id6752740369" target="_blank" rel="noopener">
+                      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="appstore-badge-img">
+              </a>
+        </div>
+    </section>
+  
+    <footer>
+          <div class="brand">MacroPath AI</div>
+          <nav>
+                  <a href="/privacy.html">Privacy Policy</a>
+                  <a href="/terms.html">Terms of Service</a>
+                  <a href="/support.html">Support</a>
+                  <a href="https://apps.apple.com/app/macropath-ai/id6752740369" target="_blank" rel="noopener">App Store</a>
+          </nav>
+          <div class="copy">&copy; 2026 MacroPath AI. All rights reserved.</div>
+    </footer>
+  
+<!-- LIGHTBOX OVERLAY -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxIfBg(event)">
+  <button class="lightbox-prev" id="lb-prev" onclick="lbNav(-1); event.stopPropagation()">&#8249;</button>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+    <div class="lb-frame"><img id="lb-img" src="" alt=""></div>
+  </div>
+  <button class="lightbox-next" id="lb-next" onclick="lbNav(1); event.stopPropagation()">&#8250;</button>
+</div>
+
+<script>
+// ---- LIGHTBOX ----
+let _lbImages = [];
+let _lbIdx = 0;
+
+function buildLightboxImageList() {
+  _lbImages = Array.from(document.querySelectorAll('.lightbox-tappable'));
+}
+
+function openLightbox(img) {
+  buildLightboxImageList();
+  _lbIdx = _lbImages.indexOf(img);
+  _showLbImage();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', lbKeyHandler);
+}
+
+function _showLbImage() {
+  const img = _lbImages[_lbIdx];
+  if (!img) return;
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-img').alt = img.alt;
+  document.getElementById('lb-prev').style.display = _lbIdx > 0 ? 'flex' : 'none';
+  document.getElementById('lb-next').style.display = _lbIdx < _lbImages.length - 1 ? 'flex' : 'none';
+}
+
+function lbNav(dir) {
+  _lbIdx = Math.max(0, Math.min(_lbImages.length - 1, _lbIdx + dir));
+  _showLbImage();
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', lbKeyHandler);
+}
+
+function closeLightboxIfBg(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+function lbKeyHandler(e) {
+  if (e.key === 'Escape') closeLightbox();
+  else if (e.key === 'ArrowLeft') lbNav(-1);
+  else if (e.key === 'ArrowRight') lbNav(1);
+}
+
+// ---- GOALS COACH STRIP DOTS ----
+(function() {
+  const strip = document.querySelector('.goals-coach-strip');
+  const dotsContainer = document.getElementById('goals-strip-dots');
+  if (!strip || !dotsContainer) return;
+  
+  const items = strip.querySelectorAll('.goals-coach-strip-item');
+  items.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => {
+      items[i].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+    };
+    dotsContainer.appendChild(dot);
+  });
+  
+  let scrollTimer;
+  strip.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const stripRect = strip.getBoundingClientRect();
+      const centerX = stripRect.left + stripRect.width / 2;
+      let closest = 0, minDist = Infinity;
+      items.forEach((item, i) => {
+        const rect = item.getBoundingClientRect();
+        const dist = Math.abs(rect.left + rect.width / 2 - centerX);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === closest);
+      });
+    }, 50);
+  });
+})();
+
+</script>
+</body>
+</html>
